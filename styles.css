@@ -1,0 +1,42 @@
+/* Paleta baseada no logo: azul e laranja */
+:root {
+  --primary: #1976d2;   /* azul */
+  --accent:  #ff8a00;   /* laranja */
+  --bg:      #f7fafc;   /* fundo claro */
+  --text:    #1a202c;   /* texto escuro */
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Ubuntu", sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 50% -100px, #e6f0fb 0%, var(--bg) 45%);
+}
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.site-header { background: transparent; padding: 24px 0; }
+.logo { width: 140px; height: auto; display: block; }
+.hero { text-align: center; padding: 64px 16px 96px; }
+.hero h1 { font-size: clamp(28px, 5vw, 44px); margin: 16px 0 8px; color: var(--primary); }
+.subtitle { font-size: clamp(16px, 2.6vw, 20px); color: #4a5568; }
+.cta { margin-top: 28px; }
+.btn { 
+  display: inline-block; 
+  background: linear-gradient(90deg, var(--accent), #ffb44d);
+  color: #fff; 
+  padding: 12px 22px; 
+  border-radius: 12px; 
+  text-decoration: none; 
+  font-weight: 600; 
+  box-shadow: 0 6px 16px rgba(255, 138, 0, 0.25);
+  transition: transform .08s ease, box-shadow .2s ease;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(255, 138, 0, 0.32); }
+.site-footer { padding: 24px 0 40px; text-align: center; color: #718096; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* Responsividade */
+@media (max-width: 520px) {
+  .logo { width: 110px; }
+  .hero { padding-top: 48px; }
+}
