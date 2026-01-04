@@ -135,56 +135,72 @@
         </div>
     </section>
 
-    <!-- JAVASCRIPT DO FORMULÁRIO -->
+   <!-- JAVASCRIPT DO FORMULÁRIO -->
     <script>
         const form = document.getElementById('leadForm');
         const submitBtn = document.getElementById('submitBtn');
         const formMessage = document.getElementById('formMessage');
         
         // COLE AQUI A SUA URL DO APPS SCRIPT!
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqFuRRYiHZdHfKv_yA8uXE2orMVL_YeYBQvVg-2MbP9rq4Okq5ZD-klZa2knltfyW3/exec';
+        const SCRIPT_URL = 'COLE_SUA_URL_AQUI';
         
-        form.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             
             submitBtn.disabled = true;
             submitBtn.textContent = '⏳ Enviando...';
             
-            const formData = new FormData(form);
+            // Pegar dados do formulário
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const cidade = document.getElementById('cidade').value;
+            const interesse = document.getElementById('interesse').value;
+            const ddd = document.getElementById('ddd').value;
+            const telefone = document.getElementById('telefone').value;
             
-            try {
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
+            // Criar URL com parâmetros
+            const url = SCRIPT_URL + 
+                '?nome=' + encodeURIComponent(nome) +
+                '&email=' + encodeURIComponent(email) +
+                '&cidade=' + encodeURIComponent(cidade) +
+                '&interesse=' + encodeURIComponent(interesse)+
+                '&ddd=' + encodeURIComponent(ddd)+
+                '&telefone=' + encodeURIComponent(telefone);
+              
+            
+            // Fazer request via GET (evita CORS)
+            fetch(url, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(function() {
+                // Sucesso (no-cors não retorna response, mas funciona)
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#10b981';
+                formMessage.textContent = '✅ Cadastro realizado! Você receberá novidades em breve.';
+                form.reset();
                 
-                const result = await response.json();
-                
-                if (result.result === 'success') {
-                    formMessage.style.display = 'block';
-                    formMessage.style.color = '#10b981';
-                    formMessage.textContent = '✅ Cadastro realizado! Você receberá novidades em breve.';
-                    form.reset();
-                    
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'generate_lead', {
-                            'event_category': 'Form',
-                            'event_label': 'Email Signup'
-                        });
-                    }
-                } else {
-                    throw new Error(result.message);
+                // Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', {
+                        'event_category': 'Form',
+                        'event_label': 'Email Signup'
+                    });
                 }
                 
-            } catch (error) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🎁 Quero 20% de desconto!';
+            })
+            .catch(function(error) {
+                // Erro
                 formMessage.style.display = 'block';
                 formMessage.style.color = '#ef4444';
                 formMessage.textContent = '❌ Erro ao cadastrar. Tente novamente.';
                 console.error('Erro:', error);
-            }
-            
-            submitBtn.disabled = false;
-            submitBtn.textContent = '🎁 Quero 20% de desconto!';
+                
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🎁 Quero 20% de desconto!';
+            });
         });
     </script>
 
