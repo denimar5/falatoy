@@ -69,55 +69,26 @@
                 acesso antecipado ao beta!
             </p>
             
-            <!-- FORMULÁRIO -->
             <form id="leadForm" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
                 
-                <input 
-                    type="text" 
-                    name="nome" 
-                    id="nome"
-                    placeholder="Seu nome" 
-                    maxlength="70" 
-                    required
+                <input type="text" name="nome" id="nome" placeholder="Seu nome" maxlength="70" required
                     style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
-                <input 
-                    type="text" 
-                    name="ddd" 
-                    id="nome"
-                    placeholder="ddd" 
-                     maxlength="2" 
-                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                    required
-                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
-                <input 
-                    type="text" 
-                    name="telefone" 
-                    id="nome"
-                    placeholder="telefone" 
-                    maxlength="9" 
+                
+                <input type="text" name="ddd" id="ddd" placeholder="DDD" maxlength="2" required
                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                    required
-                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
-                <input 
-                    type="email" 
-                    name="email" 
-                    id="email"
-                    maxlength="50" 
-                    placeholder="seu@email.com" 
-                    required
                     style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
                 
-                <input 
-                    type="text" 
-                    name="cidade" 
-                    id="cidade"
-                    maxlength="50" 
-                    placeholder="Cidade (opcional)"
+                <input type="text" name="telefone" id="telefone" placeholder="Telefone" maxlength="9" required
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                     style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
                 
-                <select 
-                    name="interesse" 
-                    id="interesse"
+                <input type="email" name="email" id="email" maxlength="50" placeholder="seu@email.com" required
+                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+                
+                <input type="text" name="cidade" id="cidade" maxlength="50" placeholder="Cidade (opcional)"
+                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+                
+                <select name="interesse" id="interesse"
                     style="width: 100%; padding: 1rem; margin-bottom: 1.5rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box; color: #666;">
                     <option value="">Como conheceu o FalaToy?</option>
                     <option value="redes-sociais">Redes Sociais</option>
@@ -126,16 +97,14 @@
                     <option value="outro">Outro</option>
                 </select>
                 
-                <button 
-                    type="submit" 
-                    id="submitBtn"
+                <button type="submit" id="submitBtn"
                     style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s ease;">
                     🎁 Quero 20% de desconto!
                 </button>
                 
                 <div id="formMessage" style="margin-top: 1rem; font-weight: bold; display: none;"></div>
             </form>
-            
+                        
             <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
                 🔒 Seus dados estão seguros. Não enviamos spam.
             </p>
@@ -149,7 +118,7 @@
         const formMessage = document.getElementById('formMessage');
         
         // COLE AQUI A SUA URL DO APPS SCRIPT!
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzqg5mnrHdYl9r3-7TnIyiFImdTNuw3A6p8JcaLR7yVmpVtxdreH8wq0oYGb6C5OeREQw/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxeiOnn3D57_n-s7zrVNnOn73a0HpcGjbH6fPkxHn8ZHQtxexHYa83VKkTZNwETOcOqmw/exec';
         
         form.addEventListener('submit', function(e) {
             e.preventDefault();
