@@ -77,6 +77,7 @@
                     name="nome" 
                     id="nome"
                     placeholder="Seu nome" 
+                    maxlength="70" 
                     required
                     style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
                 <input 
@@ -84,6 +85,8 @@
                     name="ddd" 
                     id="nome"
                     placeholder="ddd" 
+                     maxlength="2" 
+                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                     required
                     style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
                 <input 
@@ -91,12 +94,15 @@
                     name="telefone" 
                     id="nome"
                     placeholder="telefone" 
+                    maxlength="9" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                     required
                     style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
                 <input 
                     type="email" 
                     name="email" 
                     id="email"
+                    maxlength="50" 
                     placeholder="seu@email.com" 
                     required
                     style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
@@ -105,6 +111,7 @@
                     type="text" 
                     name="cidade" 
                     id="cidade"
+                    maxlength="50" 
                     placeholder="Cidade (opcional)"
                     style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
                 
