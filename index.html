@@ -57,7 +57,138 @@
         </a>
       </div>
     </div>
-  </main>
+  </main>f
+  <!-- SEÇÃO DE CADASTRO -->
+    <section id="cadastro" style="padding: 4rem 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+                🎉 Seja o primeiro a saber!
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">
+                Cadastre-se e ganhe <strong>20% de desconto</strong> no lançamento + 
+                acesso antecipado ao beta!
+            </p>
+            
+            <!-- FORMULÁRIO -->
+            <form id="leadForm" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                
+                <input 
+                    type="text" 
+                    name="nome" 
+                    id="nome"
+                    placeholder="Seu nome" 
+                    required
+                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+                <input 
+                    type="text" 
+                    name="ddd" 
+                    id="nome"
+                    placeholder="ddd" 
+                    required
+                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+                <input 
+                    type="text" 
+                    name="telefone" 
+                    id="nome"
+                    placeholder="telefone" 
+                    required
+                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email"
+                    placeholder="seu@email.com" 
+                    required
+                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+                
+                <input 
+                    type="text" 
+                    name="cidade" 
+                    id="cidade"
+                    placeholder="Cidade (opcional)"
+                    style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box;">
+                
+                <select 
+                    name="interesse" 
+                    id="interesse"
+                    style="width: 100%; padding: 1rem; margin-bottom: 1.5rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem; box-sizing: border-box; color: #666;">
+                    <option value="">Como conheceu o FalaToy?</option>
+                    <option value="redes-sociais">Redes Sociais</option>
+                    <option value="amigo">Indicação de Amigo</option>
+                    <option value="google">Google</option>
+                    <option value="outro">Outro</option>
+                </select>
+                
+                <button 
+                    type="submit" 
+                    id="submitBtn"
+                    style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s ease;">
+                    🎁 Quero 20% de desconto!
+                </button>
+                
+                <div id="formMessage" style="margin-top: 1rem; font-weight: bold; display: none;"></div>
+            </form>
+            
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">
+                🔒 Seus dados estão seguros. Não enviamos spam.
+            </p>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT DO FORMULÁRIO -->
+    <script>
+        const form = document.getElementById('leadForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formMessage = document.getElementById('formMessage');
+        
+        // COLE AQUI A SUA URL DO APPS SCRIPT!
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqFuRRYiHZdHfKv_yA8uXE2orMVL_YeYBQvVg-2MbP9rq4Okq5ZD-klZa2knltfyW3/exec';
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Enviando...';
+            
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.result === 'success') {
+                    formMessage.style.display = 'block';
+                    formMessage.style.color = '#10b981';
+                    formMessage.textContent = '✅ Cadastro realizado! Você receberá novidades em breve.';
+                    form.reset();
+                    
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'Form',
+                            'event_label': 'Email Signup'
+                        });
+                    }
+                } else {
+                    throw new Error(result.message);
+                }
+                
+            } catch (error) {
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#ef4444';
+                formMessage.textContent = '❌ Erro ao cadastrar. Tente novamente.';
+                console.error('Erro:', error);
+            }
+            
+            submitBtn.disabled = false;
+            submitBtn.textContent = '🎁 Quero 20% de desconto!';
+        });
+    </script>
+
+    <footer>
   
   <footer class="site-footer">
     <div class="container">
